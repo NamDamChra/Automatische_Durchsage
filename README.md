@@ -88,8 +88,3 @@ Store audio files in the `mp3` folder on the SD card and name them numerically (
 - **No sound?** Ensure the DFPlayer Mini is wired correctly.
 - **BLE connection fails?** Check the controller’s MAC address and update it in the receiver code.
 - **Time not updating?** Verify the connection to the NTP server.
-
-## License
-
-This project is licensed under the MIT License.
-
