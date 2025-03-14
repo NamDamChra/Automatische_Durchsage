@@ -39,7 +39,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
 AiEsp32RotaryEncoder rotaryEncoder1 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN_1, ROTARY_ENCODER_B_PIN_1, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
 AiEsp32RotaryEncoder rotaryEncoder2 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN_2, ROTARY_ENCODER_B_PIN_2, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
 
-const char* ntpServer = "time1.uibk.ac.at";
+const char* ntpServer = "at.pool.ntp.org";
 const long gmtOffset_sec = 3600;
 const int daylightOffset_sec = 3600;
 
