@@ -15,9 +15,9 @@
 #define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-0b62d4a4b1c8"
 
 // WiFi und Anmeldedaten
-#define EAP_IDENTITY "c1081232@uibk.ac.at"
-#define EAP_USERNAME "c1081232@uibk.ac.at"
-#define EAP_PASSWORD "Maria&Dolbe&2018"
+#define EAP_IDENTITY "YOUR_C-ID"
+#define EAP_USERNAME "YOUR_C-ID"
+#define EAP_PASSWORD "YOUR_PASSWORD"
 const char *ssid = "eduroam";
 
 // Anzeige Einstellungen
@@ -39,9 +39,9 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
 AiEsp32RotaryEncoder rotaryEncoder1 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN_1, ROTARY_ENCODER_B_PIN_1, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
 AiEsp32RotaryEncoder rotaryEncoder2 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN_2, ROTARY_ENCODER_B_PIN_2, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
 
-const char* ntpServer = "at.pool.ntp.org";
+const char* ntpServer = "ntp1.uibk.ac.at";
 const long gmtOffset_sec = 3600;
-const int daylightOffset_sec = 3600;
+const int daylightOffset_sec = 0;
 
 int weckzeitMinuten;
 int weckzeitStunden;
@@ -162,7 +162,17 @@ void setup() {
   pinMode(47, INPUT); // Pin zum deaktivieren
   pinMode(20, INPUT); // Taster zum auslösen
 
-  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+  configTime(0, 0, ntpServer);
+  setenv("TZ", "CET-1CEST,M3.5.0,M10.5.0/3", 1);
+  tzset();
+  Serial.println("Zeit vom NTP-Server:");
+
+  struct tm timeinfo;
+if (getLocalTime(&timeinfo)) {
+    Serial.printf("Stunde: %d, Minute: %d\n", timeinfo.tm_hour, timeinfo.tm_min);
+} else {
+    Serial.println("Fehler beim Abrufen der Zeit");
+}
 }
 
 void loop() {
